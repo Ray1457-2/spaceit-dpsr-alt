@@ -10,7 +10,7 @@
     {% for item in inventory %}
     <li data-index="{{ loop.index }}" data-name="{{ item[0] }}" data-quantity="{{ item[1] }}" data-unit="{{ item[2] }}" class="item-wrapper">
       <p class="transition-colors duration-500">{{ item[0] }}</p>
-      <button type="button" class="interactable text-red-500 ml-2 delete-btn p-1 border-none text-2xl hover:none" data-index="{{ loop.index }}"><ion-icon name="trash-outline" size=""></ion-icon></button> 
+      <button type="button" class="interactable text-red-500 mt-2 delete-btn p-1 border-none text-2xl hover:none" data-index="{{ loop.index }}"><ion-icon name="trash-outline" size=""></ion-icon></button> 
       <div class="status"><span id="quantity{{ loop.index }}">{{ item[1] }}</span> {{item[2]}}</div>
       <button class="btn interactable show-dialog">Update</button>
     </li>
@@ -28,33 +28,31 @@
     <form id="updateForm">
       <p id="itemName" class="text-[#dadada] font-bold text-2xl"></p>
       <div class="flex">
-        <input type="text" placeholder="New Quantity" id="inputQuantity" class="text-[#dadada] inv-input flex-1">
+        <input type="number" placeholder="New Quantity" id="inputQuantity" class="text-[#dadada] inv-input flex-1">
         <select id="inputUnit" class="text-[#dadada] inv-input flex-1 ml-2 bg-none">
           <option class="bg-lightbg fg-[#fff]" value="kg">kg</option>
-          <option class="bg-lightbg fg-[#fff]" value="g">g</option>
+          
           <option class="bg-lightbg fg-[#fff]" value="l">l</option>
-          <option class="bg-lightbg fg-[#fff]" value="ml">ml</option>
-          <option class="bg-lightbg fg-[#fff]" value="pieces">pieces</option>
+          
+          <option class="bg-lightbg fg-[#fff]" value="units">units</option>
         </select>
       </div>
-        <div>
           <button id="confirmBtn" value="default" class="btn-2 interactable">Confirm</button>
-        </div>
     </form>
   </dialog>
 
-  <dialog id="addItemDialog" class="relative">
+  <dialog id="addItemDialog" class="relative min-w-[23rem]">
     <button type="button" id="cancelAddItemBtn" class="absolute top-2 right-2 text-white interactable"><ion-icon name="close-circle-outline" size="large"></ion-icon></button>
     <h1>Add New Item</h1>
     <form id="addItemForm">
       <input type="text" placeholder="Item Name" id="newItemName" class="text-[#dadada] inv-input" required>
-      <input type="text" placeholder="Quantity" id="newItemQuantity" class="text-[#dadada] inv-input" required>
+      <input type="number" placeholder="Quantity" id="newItemQuantity" class="text-[#dadada] inv-input" required>
       <select id="inputUnit" class="text-[#dadada] inv-input flex-1 ml-2 bg-none">
         <option class="bg-lightbg fg-[#fff]" value="kg">kg</option>
-        <option class="bg-lightbg fg-[#fff]" value="g">g</option>
+        
         <option class="bg-lightbg fg-[#fff]" value="l">l</option>
-        <option class="bg-lightbg fg-[#fff]" value="ml">ml</option>
-        <option class="bg-lightbg fg-[#fff]" value="pieces">pieces</option>
+        
+        <option class="bg-lightbg fg-[#fff]" value="units">units</option>
       </select>
         <button id="addBtn" value="default" class="btn-2 interactable">Add</button>
     </form>
@@ -64,7 +62,7 @@
     <div class="flex flex-col text-white items-center justify-center gap-6">
       <h1 class="m-0 p-0">Confirm Delete</h1>
       <p>Are you sure you want to delete this item?</p>
-      <div class="w-full">
+      <div class="w-full flex gap-2 justify-between">
         <button value="cancel" id="nodeletebtn" class="btn-2 interactable">No</button>
         <button id="confirmDeleteBtn" class="btn-2 interactable bg-red-500">Yes</button>
       </div>
@@ -252,7 +250,7 @@
   const newListItem = `
   <li data-index="${newIndex}" data-name="${newItemName}" data-quantity="${newItemQuantity}" data-unit="${newItemUnit}" class="item-wrapper">
     <p class="transition-colors duration-500">${newItemName}</p>        
-   <button type="button" class="interactable text-red-500 ml-2 delete-btn p-1 border-none text-2xl" data-index="${newIndex}"><ion-icon name="trash-outline" size=""></ion-icon></button> 
+   <button type="button" class="interactable text-red-500 mt-2 delete-btn p-1 border-none text-2xl hover:none" data-index="${newIndex}"><ion-icon name="trash-outline" size=""></ion-icon></button> 
     <div class="status"><span id="quantity${newIndex}">${newItemQuantity}</span> ${newItemUnit}</div>
     <button class="btn interactable show-dialog">Update</button>
   </li>
